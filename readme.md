@@ -1,1 +1,1 @@
-Just playing with Express.
+Following along the [socket.io chat application tutorial](http://socket.io/get-started/chat/).

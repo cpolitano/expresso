@@ -1,20 +1,9 @@
-'use strict';
+var io = require("socket.io-client");
+var socket = io('http://localhost');
 
-require('dotenv').load();
-
-var express = require('express'); 
-
-var app = express();
-
-app.get('/', function(req, res){
-  res.send('<h1>oh hai</h1>');
+socket.on('news', function (data) {
+	console.log(data);
+	socket.emit('my other event', { my: 'data' });
 });
 
-app.get('/blog', function(req, res){
-
-});
-
-app.listen(3000, function(){
-  console.log('Frontend server running on port 3000');
-  // console.log(process.env.YELP_API_KEY);
-});
+console.log("inside socket connection");
