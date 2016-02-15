@@ -1,9 +1,11 @@
 var io = require("socket.io-client");
-var socket = io('http://localhost');
+var socket = io();
 
-socket.on('news', function (data) {
-	console.log(data);
-	socket.emit('my other event', { my: 'data' });
+socket.on("connect", function () {
+	console.log("socket connection");
 });
 
-console.log("inside socket connection");
+socket.on("news", function (data) {
+	console.log(data);
+	socket.emit("received news event", { my: "data" });
+});

@@ -7238,11 +7238,18 @@ module.exports = yeast;
 
 },{}],46:[function(require,module,exports){
 var io = require("socket.io-client");
-var socket = io('http://localhost:2222');
-socket.on('news', function (data) {
-	console.log(data);
-	socket.emit('my other event', { my: 'data' });
+// var socket = io.connect("http://localhost:2222");
+var socket = io();
+
+console.log("running client js");
+
+socket.on("connect", function () {
+	console.log("inside socket connection");
 });
 
-console.log("inside socket connection");
+socket.on("news", function (data) {
+	console.log(data);
+	socket.emit("received news event", { my: "data" });
+});
+
 },{"socket.io-client":33}]},{},[46]);
