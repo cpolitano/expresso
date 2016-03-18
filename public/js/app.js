@@ -7238,18 +7238,25 @@ module.exports = yeast;
 
 },{}],46:[function(require,module,exports){
 var io = require("socket.io-client");
-// var socket = io.connect("http://localhost:2222");
 var socket = io();
 
-console.log("running client js");
-
 socket.on("connect", function () {
-	console.log("inside socket connection");
+	console.log("socket connection");
 });
 
 socket.on("news", function (data) {
 	console.log(data);
 	socket.emit("received news event", { my: "data" });
 });
+
+var form = document.getElementById("message__form");
+var input = document.getElementById("message__input");
+
+form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    socket.emit("message input", input.value);
+    input.value = "";
+    return false;
+ });
 
 },{"socket.io-client":33}]},{},[46]);
